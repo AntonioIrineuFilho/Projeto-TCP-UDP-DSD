@@ -1,0 +1,30 @@
+services:
+  redis:
+    image: "redis:7.0-alpine"
+    container_name: "redis"
+    ports:
+      - "6379:6379"
+  web_app:
+    build: ./server
+    container_name: "web_app"
+    command: daphne -b 0.0.0.0 -p 8000 web_app.asgi:application
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - server
+  server:
+    build: ./server
+    container_name: "server"
+    command: python manage.py server
+    ports:
+      - "6000:6000/tcp"
+      - "5000:5000/udp"
+    depends_on:
+      - redis
+  client:
+    build: ./client
+    container_name: "client"
+    command: python client.py
+    depends_on:
+      - server
