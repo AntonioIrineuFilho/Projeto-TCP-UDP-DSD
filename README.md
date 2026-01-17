@@ -13,7 +13,7 @@ Demonstração de envio e recebimento de dados utilizando os protocolos TCP e UD
 
 ## Funcionamento
 
-Um cliente Python se conecta a um servidor Python via TCP. Uma vez que a conexão foi estabelecida, o cliente passa a mandar um payload JSON com dados demonstrativos de temperatura e umidade gerados aleatoriamente.
+Um cliente Python se conecta a um servidor Python via TCP. Uma vez que a conexão foi estabelecida, o cliente passa a mandar um payload JSON via UDP com dados demonstrativos de temperatura e umidade gerados aleatoriamente.
 
 Para integrar a uma aplicação web, foi utilizado o Django. Dentro do Django, o servidor atua via channels mandando os dados para um consumer websocket que atualiza o frontend via JavaScript de forma assíncrona, em tempo real.
 
