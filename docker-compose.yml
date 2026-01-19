@@ -22,9 +22,9 @@ services:
       - "5000:5000/udp"
     depends_on:
       - redis
-  client:
-    build: ./client
-    container_name: "client"
-    command: python client.py
+  sensor:
+    build: ./sensor
+    container_name: "sensor"
+    command: python sensor.py
     depends_on:
       - server
